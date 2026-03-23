@@ -7,7 +7,7 @@ export function App() {
     <div className="app-shell">
       <header className="app-header">
         <Link to="/" className="brand">
-          Terminumfrage-Tool
+          Termin-Umfrage Tool
         </Link>
       </header>
 
