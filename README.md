@@ -14,6 +14,7 @@ Danach im Browser `http://localhost:5173` öffnen.
 ## MVP-Features
 
 - Umfrage erstellen (Titel + mehrere Terminoptionen)
+- Seitenstruktur: `/create`, `/poll/:id`, `/poll/:id/results`
 - Share-Link via `/poll/:id`
 - Abstimmen mit Name (Ja/Nein/Vielleicht)
 - Resultate je Option (Anzahl Stimmen)

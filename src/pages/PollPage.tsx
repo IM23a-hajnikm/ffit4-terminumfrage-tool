@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { VoteTable } from '../components/VoteTable';
+import { PollNotFound } from '../components/PollNotFound';
 import type { VoteValue } from '../types/poll';
 import { clearAllPolls, getPoll, upsertVotes } from '../utils/storage';
 
@@ -25,13 +25,7 @@ export function PollPage() {
   }, [poll]);
 
   if (!poll) {
-    return (
-      <section className="card">
-        <h1>Umfrage nicht gefunden</h1>
-        <p>Prüfe den Link oder erstelle eine neue Umfrage.</p>
-        <Link to="/">Zur Startseite</Link>
-      </section>
-    );
+    return <PollNotFound />;
   }
 
   const onSubmit = (event: FormEvent) => {
@@ -62,8 +56,16 @@ export function PollPage() {
       <div className="card">
         <h1>{poll.title}</h1>
         <p>
-          Share-Link: <code>{window.location.href}</code>
+          Abstimm-Link: <code>{window.location.href}</code>
         </p>
+        <p>
+          Ergebnis-Link: <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
+        </p>
+        <div className="actions">
+          <Link to={`/poll/${poll.id}/results`} className="button-link">
+            Resultate anzeigen
+          </Link>
+        </div>
       </div>
 
       <form onSubmit={onSubmit} className="card stack">
@@ -96,10 +98,6 @@ export function PollPage() {
           </button>
         </div>
       </form>
-
-      <div className="card">
-        <VoteTable poll={poll} />
-      </div>
     </section>
   );
 }
