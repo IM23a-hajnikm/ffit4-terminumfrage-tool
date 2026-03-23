@@ -17,6 +17,7 @@ export interface Vote {
 export interface Poll {
   id: string;
   title: string;
+  description?: string;
   createdAt: string;
   options: Option[];
   votes: Vote[];

@@ -54,6 +54,7 @@ label {
 }
 
 input,
+textarea,
 select,
 button {
   padding: 0.55rem 0.7rem;
@@ -91,6 +92,16 @@ button.secondary {
   background: #374151;
 }
 
+.option-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.option-row input {
+  flex: 1;
+}
+
 .actions {
   display: flex;
   gap: 0.5rem;
@@ -117,5 +128,10 @@ button.secondary {
 @media (max-width: 640px) {
   .app-main {
     padding: 0 0.5rem 1rem;
+  }
+
+  .option-row {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

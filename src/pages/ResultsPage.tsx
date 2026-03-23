@@ -15,6 +15,7 @@ export function ResultsPage() {
     <section className="stack">
       <div className="card">
         <h1>{poll.title} – Resultate</h1>
+        {poll.description && <p>{poll.description}</p>}
         <div className="actions">
           <Link to={`/poll/${poll.id}`} className="button-link">
             Zur Abstimmung

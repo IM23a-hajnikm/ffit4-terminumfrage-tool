@@ -17,10 +17,13 @@ function writeAll(data: Record<string, Poll>) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-export function createPoll(title: string, options: string[]): Poll {
+export function createPoll(title: string, description: string, options: string[]): Poll {
+  const normalizedDescription = description.trim();
+
   const poll: Poll = {
     id: crypto.randomUUID().slice(0, 8),
     title,
+    description: normalizedDescription.length > 0 ? normalizedDescription : undefined,
     createdAt: new Date().toISOString(),
     options: options.map((label) => ({ id: crypto.randomUUID().slice(0, 8), label })),
     votes: []

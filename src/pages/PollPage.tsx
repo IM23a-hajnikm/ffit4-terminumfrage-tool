@@ -55,6 +55,7 @@ export function PollPage() {
     <section className="stack">
       <div className="card">
         <h1>{poll.title}</h1>
+        {poll.description && <p>{poll.description}</p>}
         <p>
           Abstimm-Link: <code>{window.location.href}</code>
         </p>
