@@ -1,9 +1,12 @@
 export type VoteValue = 'yes' | 'no' | 'maybe';
 
-export interface PollOption {
+export interface Option {
   id: string;
   label: string;
 }
+
+// Alias for backwards compatibility/readability in components.
+export type PollOption = Option;
 
 export interface Vote {
   optionId: string;
@@ -15,6 +18,6 @@ export interface Poll {
   id: string;
   title: string;
   createdAt: string;
-  options: PollOption[];
+  options: Option[];
   votes: Vote[];
 }
