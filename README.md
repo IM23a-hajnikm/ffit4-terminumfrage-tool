@@ -29,3 +29,11 @@ Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne
 
 - Git-Setup im Repo: `git config pull.rebase true`
 - Ziel für Setup-Issue: `npm install` und `npm run dev` müssen lokal funktionieren.
+
+
+## Testing
+
+```bash
+npm run test
+npm run test-coverage
+```
