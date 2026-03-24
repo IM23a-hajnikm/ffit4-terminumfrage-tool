@@ -1,0 +1,32 @@
+name: frontend-job
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Formatter check
+        run: npm run format-check
+
+      - name: Run Linter check
+        run: npm run lint-check
+
+      - name: Run tests
+        run: npm run test-coverage
