@@ -24,12 +24,10 @@ Danach im Browser `http://localhost:5173` öffnen.
 
 Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne Backend.
 
-
 ## Requirements
 
 - Git-Setup im Repo: `git config pull.rebase true`
 - Ziel für Setup-Issue: `npm install` und `npm run dev` müssen lokal funktionieren.
-
 
 ## Testing
 

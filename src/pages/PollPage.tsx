@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { PollNotFound } from '../components/PollNotFound';
 import type { VoteValue } from '../types/poll';
@@ -9,9 +9,7 @@ export function PollPage() {
   const [voterName, setVoterName] = useState('');
   const [voteMap, setVoteMap] = useState<Record<string, VoteValue>>({});
   const [error, setError] = useState<string | null>(null);
-  const [refreshKey, setRefreshKey] = useState(0);
-
-  const poll = useMemo(() => getPoll(pollId), [pollId, refreshKey]);
+  const poll = getPoll(pollId);
 
   useEffect(() => {
     if (!poll) return;
@@ -43,12 +41,10 @@ export function PollPage() {
     }));
 
     upsertVotes(poll.id, voterName, entries);
-    setRefreshKey((value) => value + 1);
   };
 
   const resetAll = () => {
     clearAllPolls();
-    setRefreshKey((value) => value + 1);
   };
 
   return (
@@ -60,7 +56,8 @@ export function PollPage() {
           Abstimm-Link: <code>{window.location.href}</code>
         </p>
         <p>
-          Ergebnis-Link: <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
+          Ergebnis-Link:{' '}
+          <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
         </p>
         <div className="actions">
           <Link to={`/poll/${poll.id}/results`} className="button-link">
@@ -73,7 +70,11 @@ export function PollPage() {
         <h2>Abstimmen</h2>
         <label>
           Dein Name
-          <input value={voterName} onChange={(e) => setVoterName(e.target.value)} placeholder="Max Mustermann" />
+          <input
+            value={voterName}
+            onChange={(e) => setVoterName(e.target.value)}
+            placeholder="Max Mustermann"
+          />
         </label>
 
         {poll.options.map((option) => (
@@ -81,7 +82,12 @@ export function PollPage() {
             {option.label}
             <select
               value={voteMap[option.id] ?? 'yes'}
-              onChange={(e) => setVoteMap((prev) => ({ ...prev, [option.id]: e.target.value as VoteValue }))}
+              onChange={(e) =>
+                setVoteMap((prev) => ({
+                  ...prev,
+                  [option.id]: e.target.value as VoteValue
+                }))
+              }
             >
               <option value="yes">Ja</option>
               <option value="maybe">Vielleicht</option>
