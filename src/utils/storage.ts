@@ -17,15 +17,23 @@ function writeAll(data: Record<string, Poll>) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-export function createPoll(title: string, description: string, options: string[]): Poll {
+export function createPoll(
+  title: string,
+  description: string,
+  options: string[]
+): Poll {
   const normalizedDescription = description.trim();
 
   const poll: Poll = {
     id: crypto.randomUUID().slice(0, 8),
     title,
-    description: normalizedDescription.length > 0 ? normalizedDescription : undefined,
+    description:
+      normalizedDescription.length > 0 ? normalizedDescription : undefined,
     createdAt: new Date().toISOString(),
-    options: options.map((label) => ({ id: crypto.randomUUID().slice(0, 8), label })),
+    options: options.map((label) => ({
+      id: crypto.randomUUID().slice(0, 8),
+      label
+    })),
     votes: []
   };
 
@@ -41,7 +49,11 @@ export function getPoll(pollId: string): Poll | null {
   return all[pollId] ?? null;
 }
 
-export function upsertVotes(pollId: string, voterName: string, entries: Array<{ optionId: string; value: Vote['value'] }>): Poll | null {
+export function upsertVotes(
+  pollId: string,
+  voterName: string,
+  entries: Array<{ optionId: string; value: Vote['value'] }>
+): Poll | null {
   const all = readAll();
   const poll = all[pollId];
   if (!poll) return null;

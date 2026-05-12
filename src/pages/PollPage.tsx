@@ -60,7 +60,8 @@ export function PollPage() {
           Abstimm-Link: <code>{window.location.href}</code>
         </p>
         <p>
-          Ergebnis-Link: <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
+          Ergebnis-Link:{' '}
+          <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
         </p>
         <div className="actions">
           <Link to={`/poll/${poll.id}/results`} className="button-link">
@@ -73,7 +74,11 @@ export function PollPage() {
         <h2>Abstimmen</h2>
         <label>
           Dein Name
-          <input value={voterName} onChange={(e) => setVoterName(e.target.value)} placeholder="Max Mustermann" />
+          <input
+            value={voterName}
+            onChange={(e) => setVoterName(e.target.value)}
+            placeholder="Max Mustermann"
+          />
         </label>
 
         {poll.options.map((option) => (
@@ -81,7 +86,12 @@ export function PollPage() {
             {option.label}
             <select
               value={voteMap[option.id] ?? 'yes'}
-              onChange={(e) => setVoteMap((prev) => ({ ...prev, [option.id]: e.target.value as VoteValue }))}
+              onChange={(e) =>
+                setVoteMap((prev) => ({
+                  ...prev,
+                  [option.id]: e.target.value as VoteValue
+                }))
+              }
             >
               <option value="yes">Ja</option>
               <option value="maybe">Vielleicht</option>
