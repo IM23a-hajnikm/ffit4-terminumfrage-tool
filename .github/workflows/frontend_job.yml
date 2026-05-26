@@ -34,3 +34,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Upload static site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminumfrage-static-site
+          path: dist/
+          retention-days: 7
