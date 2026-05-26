@@ -6,7 +6,9 @@ interface VoteTableProps {
 
 export function VoteTable({ poll }: VoteTableProps) {
   const counts = poll.options.map((option) => {
-    const optionVotes = poll.votes.filter((vote) => vote.optionId === option.id);
+    const optionVotes = poll.votes.filter(
+      (vote) => vote.optionId === option.id
+    );
     return {
       option,
       yes: optionVotes.filter((vote) => vote.value === 'yes').length,

@@ -16,7 +16,9 @@ export function CreatePollPage() {
   }, [title, options]);
 
   const updateOption = (index: number, value: string) => {
-    setOptions((prev) => prev.map((entry, idx) => (idx === index ? value : entry)));
+    setOptions((prev) =>
+      prev.map((entry, idx) => (idx === index ? value : entry))
+    );
   };
 
   const addOption = () => {
@@ -57,7 +59,11 @@ export function CreatePollPage() {
       <form onSubmit={onSubmit} className="stack">
         <label>
           Titel (Pflicht)
-          <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="z. B. Team-Retrospektive" />
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="z. B. Team-Retrospektive"
+          />
         </label>
 
         <label>
@@ -79,7 +85,12 @@ export function CreatePollPage() {
                 onChange={(e) => updateOption(index, e.target.value)}
                 placeholder={`Option ${index + 1} (z. B. Mo 18:00)`}
               />
-              <button type="button" className="secondary" onClick={() => removeOption(index)} disabled={options.length <= 1}>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => removeOption(index)}
+                disabled={options.length <= 1}
+              >
                 Entfernen
               </button>
             </div>

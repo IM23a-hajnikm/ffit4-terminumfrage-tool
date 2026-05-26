@@ -15,6 +15,12 @@ export default [
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: { jsx: true }
+      },
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        localStorage: 'readonly',
+        crypto: 'readonly'
       }
     },
     plugins: {
@@ -25,7 +31,10 @@ export default [
     rules: {
       ...tsPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true }
+      ]
     }
   }
 ];
