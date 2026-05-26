@@ -4,3 +4,6 @@ dist
 *.log
 *.tsbuildinfo
 memory/
+.env
+.env.local
+.env.*.local
