@@ -1,0 +1,8 @@
+node_modules
+dist
+coverage
+.git
+memory
+npm-debug.log*
+Dockerfile
+PROJECT_CONTEXT.md
