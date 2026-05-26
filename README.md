@@ -13,7 +13,7 @@ Danach im Browser `http://localhost:5173` öffnen.
 
 ## MVP-Features
 
-- Umfrage erstellen (Titel Pflicht + Beschreibung optional + Terminoptionen)
+- Umfrage erstellen (Titel Pflicht, Beschreibung optional, Terminoptionen)
 - Seitenstruktur: `/create`, `/poll/:id`, `/poll/:id/results`
 - Share-Link via `/poll/:id`
 - Abstimmen mit Name (Ja/Nein/Vielleicht)
@@ -29,9 +29,12 @@ Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne
 - Git-Setup im Repo: `git config pull.rebase true`
 - Ziel für Setup-Issue: `npm install` und `npm run dev` müssen lokal funktionieren.
 
-## Testing
+## Quality Checks
 
 ```bash
-npm run test
+npm run format-check
+npm run lint-check
 npm run test-coverage
+npm run tsc
+npm run build
 ```

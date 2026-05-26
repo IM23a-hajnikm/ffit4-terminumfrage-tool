@@ -14,6 +14,8 @@ export interface Option {
   label: string;
 }
 
+export type PollOption = Option;
+
 export interface Vote {
   optionId: string;
   voterName: string;
@@ -23,6 +25,7 @@ export interface Vote {
 export interface Poll {
   id: string;
   title: string;
+  description?: string;
   createdAt: string;
   options: Option[];
   votes: Vote[];
@@ -34,6 +37,7 @@ export interface Poll {
 - Eine **Poll** hat mehrere **Optionen**.
 - Eine **Vote** referenziert genau eine Option über `optionId`.
 - Der Name der abstimmenden Person ist in `voterName` gespeichert.
+- Eine Person kann ihre Stimmen durch erneutes Speichern mit demselben Namen ersetzen.
 
 ## Persistenz-Entscheidung (MVP)
 

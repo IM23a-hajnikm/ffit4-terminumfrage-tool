@@ -14,7 +14,7 @@ Erwarteter Wert:
 pull.rebase=true
 ```
 
-## Issue 2 — Projekt Setup (Vite + React + TypeScript)
+## Issue 2: Projekt Setup (Vite + React + TypeScript)
 
 ### Beschreibung
 
@@ -24,4 +24,4 @@ Grundprojekt erstellen, Dependencies installieren, App lokal lauffähig machen.
 
 - `npm install` und `npm run dev` funktionieren.
 - Basis-Layout wird gerendert (z. B. "Termin-Umfrage Tool").
-- ESLint/Prettier optional; wenn vorhanden, dann ohne Fehler.
+- ESLint/Prettier sind vorhanden und laufen ohne Fehler.

@@ -5,22 +5,22 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  { ignores: ['dist', 'node_modules'] },
+  { ignores: ['dist', 'node_modules', 'coverage'] },
   js.configs.recommended,
   {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
       parser: tsParser,
+      globals: {
+        crypto: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+        window: 'readonly'
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: { jsx: true }
-      },
-      globals: {
-        document: 'readonly',
-        window: 'readonly',
-        localStorage: 'readonly',
-        crypto: 'readonly'
       }
     },
     plugins: {

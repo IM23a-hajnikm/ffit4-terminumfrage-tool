@@ -9,6 +9,8 @@ export function PollPage() {
   const [voterName, setVoterName] = useState('');
   const [voteMap, setVoteMap] = useState<Record<string, VoteValue>>({});
   const [error, setError] = useState<string | null>(null);
+  const [, setRefreshKey] = useState(0);
+
   const poll = getPoll(pollId);
 
   useEffect(() => {
@@ -41,10 +43,12 @@ export function PollPage() {
     }));
 
     upsertVotes(poll.id, voterName, entries);
+    setRefreshKey((value) => value + 1);
   };
 
   const resetAll = () => {
     clearAllPolls();
+    setRefreshKey((value) => value + 1);
   };
 
   return (
