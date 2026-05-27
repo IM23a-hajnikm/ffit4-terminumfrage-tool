@@ -31,6 +31,10 @@ Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne
 
 Limitierung: Polls sind lokal im jeweiligen Browser gespeichert. Der Share-Link funktioniert daher innerhalb desselben Browserprofils; für echte teamübergreifende Links wäre ein Backend/Supabase die nächste Ausbaustufe.
 
+## Screenshot
+
+![Resultate mit bester Option](docs/screenshots/results-smoke.png)
+
 ## CI/CD und Deployment
 
 - `frontend-job`: installiert Dependencies, prüft Formatierung/Linting, führt Coverage-Tests aus, baut die App und lädt `dist/` als Artifact hoch.
