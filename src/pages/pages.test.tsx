@@ -76,6 +76,9 @@ describe('page routes', () => {
 
     expect(markup).toContain('Teamtermin');
     expect(markup).toContain('Resultate');
-    expect(markup).toContain('<td>Mo 18:00</td><td>1</td><td>0</td><td>0</td>');
+    expect(markup).toContain('CSV exportieren');
+    expect(markup).toContain(
+      '<td>Mo 18:00</td><td>1</td><td>0</td><td>0</td><td>2</td>'
+    );
   });
 });

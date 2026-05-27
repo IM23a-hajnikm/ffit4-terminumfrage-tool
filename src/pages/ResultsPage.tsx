@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { VoteTable } from '../components/VoteTable';
 import { PollNotFound } from '../components/PollNotFound';
+import { createResultsCsv } from '../utils/results';
 import { getPoll } from '../utils/storage';
 
 export function ResultsPage() {
@@ -10,6 +11,17 @@ export function ResultsPage() {
   if (!poll) {
     return <PollNotFound />;
   }
+
+  const downloadCsv = () => {
+    const csv = createResultsCsv(poll);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `terminumfrage-${poll.id}-resultate.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <section className="stack">
@@ -23,6 +35,9 @@ export function ResultsPage() {
           <Link to="/create" className="button-link secondary-link">
             Neue Umfrage erstellen
           </Link>
+          <button type="button" className="secondary" onClick={downloadCsv}>
+            CSV exportieren
+          </button>
         </div>
       </div>
 

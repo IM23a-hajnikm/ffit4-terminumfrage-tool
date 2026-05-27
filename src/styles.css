@@ -113,9 +113,24 @@ button.secondary {
   font-weight: 600;
 }
 
+.result-summary,
+.result-rule {
+  margin: 0.25rem 0;
+}
+
+.result-rule {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
 .result-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 560px;
 }
 
 .result-table th,
@@ -123,6 +138,20 @@ button.secondary {
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
   padding: 0.5rem;
+}
+
+.best-row {
+  background: #ecfdf5;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  background: #047857;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
 }
 
 @media (max-width: 640px) {

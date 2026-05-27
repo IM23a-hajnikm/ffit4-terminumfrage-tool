@@ -75,6 +75,20 @@ export function upsertVotes(
   return poll;
 }
 
+export function deleteVotes(pollId: string, voterName: string): Poll | null {
+  const all = readAll();
+  const poll = all[pollId];
+  if (!poll) return null;
+
+  const normalizedName = voterName.trim();
+  if (!normalizedName) return poll;
+
+  poll.votes = poll.votes.filter((vote) => vote.voterName !== normalizedName);
+  all[pollId] = poll;
+  writeAll(all);
+  return poll;
+}
+
 export function clearAllPolls() {
   localStorage.removeItem(STORAGE_KEY);
 }

@@ -29,10 +29,16 @@ Vite serves the static build locally so the release artifact can be checked befo
 
 `.github/workflows/frontend_job.yml` runs the frontend quality gates and uploads `dist/` as an artifact named `terminumfrage-static-site`.
 
-This gives a downloadable static-site package without requiring GitHub Pages. GitHub Pages for private repositories may require a paid plan, so it is not used here.
+`.github/workflows/pages_deploy.yml` builds the same Vite app with the repository base path and deploys it with GitHub Pages.
+
+Expected public URL:
+
+```text
+https://im23a-hajnikm.github.io/ffit4-terminumfrage-tool/
+```
 
 ## External Static Hosts
 
-The `dist/` folder can be uploaded to any static host that supports single-page apps, for example a school web server, Netlify, Vercel, Azure Static Web Apps, or S3-compatible hosting.
+The `dist/` folder can also be uploaded to any static host that supports single-page apps, for example a school web server, Netlify, Vercel, Azure Static Web Apps, or S3-compatible hosting.
 
 For hosts that need credentials, store tokens as CI secrets. Do not commit deployment tokens or `.env` files.

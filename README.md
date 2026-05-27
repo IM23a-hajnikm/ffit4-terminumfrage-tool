@@ -2,6 +2,8 @@
 
 MVP einer einfachen Terminumfrage als standalone Web-App mit **React + Vite + TypeScript**.
 
+Live-Deployment: https://im23a-hajnikm.github.io/ffit4-terminumfrage-tool/
+
 ## Schnellstart
 
 ```bash
@@ -17,12 +19,24 @@ Danach im Browser `http://localhost:5173` öffnen.
 - Seitenstruktur: `/create`, `/poll/:id`, `/poll/:id/results`
 - Share-Link via `/poll/:id`
 - Abstimmen mit Name (Ja/Nein/Vielleicht)
-- Resultate je Option (Anzahl Stimmen)
+- Erneute Abstimmung mit gleichem Namen aktualisiert die Stimme
+- Stimme per Name löschen
+- Resultate je Option mit Teilnehmerzahl, Score und bester Option
+- CSV-Export der Resultate
 - Fehlerfälle (fehlender Titel/Name), Reset aller lokalen Umfragen
 
 ## Speicherung
 
 Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne Backend.
+
+Limitierung: Polls sind lokal im jeweiligen Browser gespeichert. Der Share-Link funktioniert daher innerhalb desselben Browserprofils; für echte teamübergreifende Links wäre ein Backend/Supabase die nächste Ausbaustufe.
+
+## CI/CD und Deployment
+
+- `frontend-job`: installiert Dependencies, prüft Formatierung/Linting, führt Coverage-Tests aus, baut die App und lädt `dist/` als Artifact hoch.
+- `deploy-static-site`: baut die Vite-App mit GitHub-Pages-Basispfad und veröffentlicht sie via GitHub Pages.
+- `Jenkinsfile`: enthält dieselben lokalen Qualitätsstufen für eine Jenkins-Pipeline.
+- `sonar-project.properties`: bindet Vitest-LCOV für SonarQube/SonarCloud ein.
 
 ## Requirements
 

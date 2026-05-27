@@ -12,9 +12,11 @@ export default [
     languageOptions: {
       parser: tsParser,
       globals: {
+        Blob: 'readonly',
         crypto: 'readonly',
         document: 'readonly',
         localStorage: 'readonly',
+        URL: 'readonly',
         window: 'readonly'
       },
       parserOptions: {

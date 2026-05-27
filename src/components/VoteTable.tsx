@@ -1,45 +1,45 @@
 import type { Poll } from '../types/poll';
+import { getParticipantNames, getResultRows } from '../utils/results';
 
 interface VoteTableProps {
   poll: Poll;
 }
 
 export function VoteTable({ poll }: VoteTableProps) {
-  const counts = poll.options.map((option) => {
-    const optionVotes = poll.votes.filter(
-      (vote) => vote.optionId === option.id
-    );
-    return {
-      option,
-      yes: optionVotes.filter((vote) => vote.value === 'yes').length,
-      no: optionVotes.filter((vote) => vote.value === 'no').length,
-      maybe: optionVotes.filter((vote) => vote.value === 'maybe').length
-    };
-  });
+  const rows = getResultRows(poll);
+  const participantCount = getParticipantNames(poll).length;
 
   return (
     <section>
       <h2>Resultate</h2>
-      <table className="result-table">
-        <thead>
-          <tr>
-            <th>Terminoption</th>
-            <th>Ja</th>
-            <th>Vielleicht</th>
-            <th>Nein</th>
-          </tr>
-        </thead>
-        <tbody>
-          {counts.map((entry) => (
-            <tr key={entry.option.id}>
-              <td>{entry.option.label}</td>
-              <td>{entry.yes}</td>
-              <td>{entry.maybe}</td>
-              <td>{entry.no}</td>
+      <p className="result-summary">Teilnehmende: {participantCount}</p>
+      <p className="result-rule">Score: Ja = 2, Vielleicht = 1, Nein = 0</p>
+      <div className="table-scroll">
+        <table className="result-table">
+          <thead>
+            <tr>
+              <th>Terminoption</th>
+              <th>Ja</th>
+              <th>Vielleicht</th>
+              <th>Nein</th>
+              <th>Score</th>
+              <th>Empfehlung</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.optionId} className={row.isBest ? 'best-row' : ''}>
+                <td>{row.label}</td>
+                <td>{row.yes}</td>
+                <td>{row.maybe}</td>
+                <td>{row.no}</td>
+                <td>{row.score}</td>
+                <td>{row.isBest ? <span className="badge">Best</span> : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

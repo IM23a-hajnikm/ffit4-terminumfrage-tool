@@ -2,7 +2,12 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { PollNotFound } from '../components/PollNotFound';
 import type { VoteValue } from '../types/poll';
-import { clearAllPolls, getPoll, upsertVotes } from '../utils/storage';
+import {
+  clearAllPolls,
+  deleteVotes,
+  getPoll,
+  upsertVotes
+} from '../utils/storage';
 
 export function PollPage() {
   const { pollId = '' } = useParams();
@@ -48,6 +53,18 @@ export function PollPage() {
 
   const resetAll = () => {
     clearAllPolls();
+    setRefreshKey((value) => value + 1);
+  };
+
+  const deleteOwnVote = () => {
+    setError(null);
+
+    if (voterName.trim().length === 0) {
+      setError('Bitte Namen eingeben.');
+      return;
+    }
+
+    deleteVotes(poll.id, voterName);
     setRefreshKey((value) => value + 1);
   };
 
@@ -104,6 +121,9 @@ export function PollPage() {
 
         <div className="actions">
           <button type="submit">Stimme speichern</button>
+          <button type="button" className="secondary" onClick={deleteOwnVote}>
+            Stimme löschen
+          </button>
           <button type="button" className="secondary" onClick={resetAll}>
             Alle Umfragen zurücksetzen
           </button>

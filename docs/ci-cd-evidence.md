@@ -45,4 +45,6 @@ These values must be stored in GitHub Actions/Jenkins secrets or the local shell
 
 ## Current Local Evidence
 
-The project currently verifies locally with formatter, linter, typecheck, test coverage, and production build commands. A real Sonar quality-gate result can only be produced after the external Sonar server/token are configured.
+The project currently verifies locally with formatter, linter, typecheck, test coverage, and production build commands. The GitHub Actions `frontend-job` workflow is also green on `main` and uploads the static site artifact.
+
+`deploy-static-site` publishes the production build to GitHub Pages. A real Sonar quality-gate result can only be produced after the external Sonar server/token are configured.

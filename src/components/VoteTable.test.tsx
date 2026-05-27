@@ -24,7 +24,13 @@ describe('VoteTable', () => {
 
     const markup = renderToStaticMarkup(<VoteTable poll={poll} />);
 
-    expect(markup).toContain('<td>Mo 18:00</td><td>2</td><td>1</td><td>1</td>');
-    expect(markup).toContain('<td>Di 10:00</td><td>0</td><td>0</td><td>1</td>');
+    expect(markup).toContain('Teilnehmende: 4');
+    expect(markup).toContain(
+      '<td>Mo 18:00</td><td>2</td><td>1</td><td>1</td><td>5</td>'
+    );
+    expect(markup).toContain(
+      '<td>Di 10:00</td><td>0</td><td>0</td><td>1</td><td>0</td>'
+    );
+    expect(markup).toContain('<span class="badge">Best</span>');
   });
 });

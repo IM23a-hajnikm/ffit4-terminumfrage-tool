@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { clearAllPolls, createPoll, getPoll, upsertVotes } from './storage';
+import {
+  clearAllPolls,
+  createPoll,
+  deleteVotes,
+  getPoll,
+  upsertVotes
+} from './storage';
 
 describe('storage', () => {
   beforeEach(() => {
@@ -54,6 +60,20 @@ describe('storage', () => {
 
     // Act
     upsertVotes(poll.id, '   ', [{ optionId, value: 'yes' }]);
+    const loaded = getPoll(poll.id);
+
+    // Assert
+    expect(loaded?.votes).toHaveLength(0);
+  });
+
+  it('deletes votes for a voter name', () => {
+    // Arrange
+    const poll = createPoll('Retro', '', ['Di 10:00']);
+    const optionId = poll.options[0].id;
+    upsertVotes(poll.id, 'Lea', [{ optionId, value: 'yes' }]);
+
+    // Act
+    deleteVotes(poll.id, 'Lea');
     const loaded = getPoll(poll.id);
 
     // Assert
