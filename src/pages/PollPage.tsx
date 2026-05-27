@@ -14,9 +14,12 @@ export function PollPage() {
   const [voterName, setVoterName] = useState('');
   const [voteMap, setVoteMap] = useState<Record<string, VoteValue>>({});
   const [error, setError] = useState<string | null>(null);
-  const [, setRefreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [poll, setPoll] = useState(() => getPoll(pollId));
 
-  const poll = getPoll(pollId);
+  useEffect(() => {
+    setPoll(getPoll(pollId));
+  }, [pollId, refreshKey]);
 
   useEffect(() => {
     if (!poll) return;
