@@ -43,12 +43,14 @@ Latest local evidence:
 | `a4e4f23` | Added `.env.example` and secrets documentation                                     |
 | `f3fc6de` | Added page-level route render coverage                                             |
 | `8750ae1` | Upgraded GitHub Actions to Node 24-capable major versions                          |
+| `714af70` | Stabilized PollPage refresh state to remove render loop                            |
+| `ef8fd77` | Opted React Router into v7 future flags to remove browser warnings                 |
 
 ## Learning Unit Matrix
 
 | LU   | Current Evidence                                                                                     | Files / Commands                                                                                                                      | Status                                         |
 | ---- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| LU01 | Repository/task setup and issue backlog exist. Agent backlog #29-#42 tracks CI/CD and quality work.  | `LU01.A01_REPOSITORY_UND_TASKS.md`, GitHub Issues                                                                                     | Complete                                       |
+| LU01 | Repository/task setup and issue backlog exist. Agent backlog #29-#44 tracks CI/CD and quality work.  | `LU01.A01_REPOSITORY_UND_TASKS.md`, GitHub Issues                                                                                     | Complete                                       |
 | LU02 | Local frontend project can be installed, built, and run with npm.                                    | `package.json`, `package-lock.json`, `npm install`, `npm run dev`, `npm run build`                                                    | Complete                                       |
 | LU03 | Source structure, routing, and data model are documented and implemented.                            | `src/App.tsx`, `src/types/poll.ts`, `docs/data-model.md`, `docs/LU18.A04_STARTPLAN.md`                                                | Complete                                       |
 | LU04 | CI quality gates are represented in GitHub Actions and Jenkins.                                      | `.github/workflows/frontend_job.yml`, `Jenkinsfile`                                                                                   | Complete, Jenkins runtime not executed locally |
@@ -62,8 +64,8 @@ Latest local evidence:
 | LU12 | Docker runtime artifact is defined for the static frontend.                                          | `Dockerfile`, `.dockerignore`, `nginx.conf`                                                                                           | Complete, local Docker daemon was unavailable  |
 | LU13 | Secrets and environment handling are documented.                                                     | `.env.example`, `docs/secrets.md`, `.gitignore`                                                                                       | Complete                                       |
 | LU14 | Documentation explains app setup, data model, CI/CD evidence, deployment, and secrets.               | `README.md`, `docs/*.md`                                                                                                              | Complete                                       |
-| LU15 | Source-of-truth verification evidence is recorded in GitHub issue closure comments.                  | Closed issues #29-#42                                                                                                                 | Complete                                       |
-| LU16 | Remaining improvement backlog was tracked in GitHub and resolved or documented with external limits. | Closed issues #39-#42 and older repository issues after triage                                                                        | Complete                                       |
+| LU15 | Source-of-truth verification evidence is recorded in GitHub issue closure comments.                  | Closed issues #29-#44                                                                                                                 | Complete                                       |
+| LU16 | Remaining improvement backlog was tracked in GitHub and resolved or documented with external limits. | Closed issues #39-#44 and older repository issues after triage                                                                        | Complete                                       |
 
 ## External Limitations
 
