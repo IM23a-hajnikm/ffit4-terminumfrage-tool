@@ -11,7 +11,10 @@ const routerBaseName =
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename={routerBaseName}>
+    <BrowserRouter
+      basename={routerBaseName}
+      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>
