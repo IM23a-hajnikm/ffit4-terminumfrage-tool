@@ -17,18 +17,6 @@ function renderRoute(path: string, entry: string, element: ReactElement) {
   );
 }
 
-function setWindowLocation(path: string) {
-  Object.defineProperty(globalThis, 'window', {
-    configurable: true,
-    value: {
-      location: {
-        href: `http://localhost${path}`,
-        origin: 'http://localhost'
-      }
-    }
-  });
-}
-
 describe('page routes', () => {
   beforeEach(() => {
     clearAllPolls();
@@ -48,7 +36,6 @@ describe('page routes', () => {
 
   it('renders a poll voting page for an existing poll', () => {
     const poll = createPoll('Teamtermin', 'Bitte abstimmen', ['Mo 18:00']);
-    setWindowLocation(`/poll/${poll.id}`);
 
     const markup = renderRoute(
       '/poll/:pollId',
@@ -59,6 +46,8 @@ describe('page routes', () => {
     expect(markup).toContain('Teamtermin');
     expect(markup).toContain('Bitte abstimmen');
     expect(markup).toContain('Resultate anzeigen');
+    expect(markup).not.toContain('Abstimm-Link');
+    expect(markup).not.toContain('Ergebnis-Link');
     expect(markup).toContain('Mo 18:00');
   });
 

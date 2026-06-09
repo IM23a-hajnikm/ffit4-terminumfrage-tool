@@ -76,13 +76,6 @@ export function PollPage() {
       <div className="card">
         <h1>{poll.title}</h1>
         {poll.description && <p>{poll.description}</p>}
-        <p>
-          Abstimm-Link: <code>{window.location.href}</code>
-        </p>
-        <p>
-          Ergebnis-Link:{' '}
-          <code>{`${window.location.origin}/poll/${poll.id}/results`}</code>
-        </p>
         <div className="actions">
           <Link to={`/poll/${poll.id}/results`} className="button-link">
             Resultate anzeigen

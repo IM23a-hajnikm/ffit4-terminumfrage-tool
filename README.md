@@ -17,7 +17,7 @@ Danach im Browser `http://localhost:5173` öffnen.
 
 - Umfrage erstellen (Titel Pflicht, Beschreibung optional, Terminoptionen)
 - Seitenstruktur: `/create`, `/poll/:id`, `/poll/:id/results`
-- Share-Link via `/poll/:id`
+- Lokale Abstimm- und Resultatansicht innerhalb desselben Browserprofils
 - Abstimmen mit Name (Ja/Nein/Vielleicht)
 - Erneute Abstimmung mit gleichem Namen aktualisiert die Stimme
 - Stimme per Name löschen
@@ -29,7 +29,7 @@ Danach im Browser `http://localhost:5173` öffnen.
 
 Aktuell **LocalStorage** (Key: `terminumfrage.polls.v1`) für schnelles MVP ohne Backend.
 
-Limitierung: Polls sind lokal im jeweiligen Browser gespeichert. Der Share-Link funktioniert daher innerhalb desselben Browserprofils; für echte teamübergreifende Links wäre ein Backend/Supabase die nächste Ausbaustufe.
+Limitierung: Polls sind lokal im jeweiligen Browser gespeichert. Öffentliche Abstimm- oder Ergebnislinks funktionieren ohne Backend nicht zuverlässig; die Resultate sind deshalb intern über die App erreichbar. Für echte teamübergreifende Links wäre ein Backend/Supabase die nächste Ausbaustufe.
 
 ## Screenshot
 
