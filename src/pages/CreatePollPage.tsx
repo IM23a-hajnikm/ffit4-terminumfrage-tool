@@ -1,5 +1,16 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { createPoll } from '../utils/storage';
 
 const dateTimeFormatter = new Intl.DateTimeFormat('de-CH', {
@@ -108,72 +119,100 @@ export function CreatePollPage() {
   };
 
   return (
-    <section className="page-section">
-      <div className="section-heading">
-        <span className="eyebrow">Terminumfrage</span>
-        <h1>Neue Terminumfrage erstellen</h1>
-      </div>
+    <section className="mx-auto w-full max-w-3xl">
+      <Card className="border-border bg-card shadow-lg">
+        <CardHeader className="space-y-2">
+          <CardDescription className="text-xs font-semibold tracking-wide uppercase">
+            TERMINUMFRAGE
+          </CardDescription>
+          <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
+            Neue Terminumfrage erstellen
+          </CardTitle>
+        </CardHeader>
 
-      <form onSubmit={onSubmit} className="card stack form-panel">
-        <label>
-          Titel (Pflicht)
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="z. B. Team-Retrospektive"
-          />
-        </label>
-
-        <label>
-          Beschreibung (optional)
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Zusatzinfos zur Umfrage (optional)"
-            rows={3}
-          />
-        </label>
-
-        <div className="stack">
-          <strong className="field-title">Terminoptionen</strong>
-          {options.map((option, index) => (
-            <div key={index} className="option-row">
-              <label className="date-field">
-                Datum und Uhrzeit
-                <input
-                  type="datetime-local"
-                  value={option}
-                  onChange={(e) => updateOption(index, e.target.value)}
-                />
-              </label>
-              <span className="option-preview">
-                {formatDateTimeOption(option)}
-              </span>
-              <button
-                type="button"
-                className="secondary compact-button"
-                onClick={() => removeOption(index)}
-                disabled={options.length <= 1}
-              >
-                Entfernen
-              </button>
+        <CardContent>
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="poll-title">Titel (Pflicht)</Label>
+              <Input
+                id="poll-title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="z. B. Team-Retrospektive"
+              />
             </div>
-          ))}
-          <button
-            type="button"
-            className="secondary add-option"
-            onClick={addOption}
-          >
-            Option hinzufügen
-          </button>
-        </div>
 
-        {error && <p className="error">{error}</p>}
+            <div className="space-y-2">
+              <Label htmlFor="poll-description">Beschreibung (optional)</Label>
+              <Textarea
+                id="poll-description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Zusatzinfos zur Umfrage (optional)"
+                rows={3}
+              />
+            </div>
 
-        <button type="submit" className="primary-action" disabled={!canSubmit}>
-          Umfrage erstellen
-        </button>
-      </form>
+            <div className="space-y-3">
+              <Label>Terminoptionen</Label>
+              {options.map((option, index) => {
+                const optionId = `poll-option-${index}`;
+
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 rounded-lg border p-4 max-sm:flex-col max-sm:items-stretch"
+                  >
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <Label htmlFor={optionId}>Datum und Uhrzeit</Label>
+                      <Input
+                        id={optionId}
+                        type="datetime-local"
+                        value={option}
+                        onChange={(e) => updateOption(index, e.target.value)}
+                      />
+                    </div>
+                    <span className="flex h-9 flex-1 items-center self-end text-sm font-medium text-muted-foreground max-sm:h-auto max-sm:self-stretch">
+                      {formatDateTimeOption(option)}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      className="self-end text-destructive hover:bg-destructive/10 hover:text-destructive max-sm:w-full max-sm:self-stretch"
+                      onClick={() => removeOption(index)}
+                      disabled={options.length <= 1}
+                    >
+                      Entfernen
+                    </Button>
+                  </div>
+                );
+              })}
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full sm:w-auto"
+                onClick={addOption}
+              >
+                Option hinzufügen
+              </Button>
+            </div>
+
+            {error && (
+              <p className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
+                {error}
+              </p>
+            )}
+
+            <Button
+              type="submit"
+              className="w-full sm:w-auto"
+              disabled={!canSubmit}
+            >
+              Umfrage erstellen
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </section>
   );
 }

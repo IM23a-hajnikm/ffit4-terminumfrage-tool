@@ -1,3 +1,32 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,6 +34,35 @@
   background: #f9fafb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --radius: 0.625rem;
+  --background: oklch(0.985 0.002 247.839);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.546 0.245 262.881);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.623 0.214 259.815);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 * {
@@ -124,7 +182,7 @@ body {
   padding: 2rem;
 }
 
-label {
+label:not([data-slot='label']) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -133,33 +191,33 @@ label {
   font-weight: 650;
 }
 
-input,
-textarea,
+input:not([data-slot='input']),
+textarea:not([data-slot='textarea']),
 select,
-button {
+button:not([data-slot='button']) {
   padding: 0.7rem 1rem;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font: inherit;
 }
 
-input,
-textarea,
+input:not([data-slot='input']),
+textarea:not([data-slot='textarea']),
 select {
   background: #fff;
   color: #111827;
   width: 100%;
 }
 
-input:focus,
-textarea:focus,
+input:not([data-slot='input']):focus,
+textarea:not([data-slot='textarea']):focus,
 select:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.85);
   outline: none;
 }
 
-button {
+button:not([data-slot='button']) {
   background: #2563eb;
   color: white;
   border: none;
@@ -171,31 +229,31 @@ button {
     transform 0.15s ease;
 }
 
-button:hover:not(:disabled),
+button:not([data-slot='button']):hover:not(:disabled),
 .button-link:hover,
 .header-action:hover {
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
   transform: translateY(-1px);
 }
 
-button:disabled {
+button:not([data-slot='button']):disabled {
   background: #93c5fd;
   color: #fff;
   cursor: not-allowed;
 }
 
-button.secondary {
+button.secondary:not([data-slot='button']) {
   background: #fff;
   border: 1px solid #d1d5db;
   color: #374151;
 }
 
-button.secondary:hover:not(:disabled) {
+button.secondary:not([data-slot='button']):hover:not(:disabled) {
   background: #f9fafb;
   box-shadow: none;
 }
 
-button.secondary:disabled {
+button.secondary:not([data-slot='button']):disabled {
   background: #f3f4f6;
   border-color: #e5e7eb;
   color: #64748b;
@@ -250,7 +308,7 @@ button.secondary:disabled {
   min-height: 2.85rem;
 }
 
-button.compact-button {
+button.compact-button:not([data-slot='button']) {
   background: #fff;
   border-color: #fecaca;
   color: #b91c1c;
@@ -258,13 +316,13 @@ button.compact-button {
   min-width: 7rem;
 }
 
-button.compact-button:hover:not(:disabled) {
+button.compact-button:not([data-slot='button']):hover:not(:disabled) {
   background: #fef2f2;
   box-shadow: none;
   color: #991b1b;
 }
 
-button.compact-button:disabled {
+button.compact-button:not([data-slot='button']):disabled {
   background: #f3f4f6;
   border-color: #e5e7eb;
   color: #9ca3af;
