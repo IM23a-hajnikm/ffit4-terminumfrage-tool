@@ -73,9 +73,12 @@ export function PollPage() {
 
   return (
     <section className="stack">
-      <div className="card">
-        <h1>{poll.title}</h1>
-        {poll.description && <p>{poll.description}</p>}
+      <div className="card page-intro">
+        <div>
+          <span className="eyebrow">Abstimmung</span>
+          <h1>{poll.title}</h1>
+          {poll.description && <p>{poll.description}</p>}
+        </div>
         <div className="actions">
           <Link to={`/poll/${poll.id}/results`} className="button-link">
             Resultate anzeigen

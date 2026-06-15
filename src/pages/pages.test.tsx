@@ -32,6 +32,8 @@ describe('page routes', () => {
     expect(markup).toContain('Neue Terminumfrage erstellen');
     expect(markup).toContain('Titel (Pflicht)');
     expect(markup).toContain('Beschreibung (optional)');
+    expect(markup).toContain('Datum und Uhrzeit');
+    expect(markup).toContain('type="datetime-local"');
   });
 
   it('renders a poll voting page for an existing poll', () => {

@@ -16,6 +16,7 @@ Danach im Browser `http://localhost:5173` öffnen.
 ## MVP-Features
 
 - Umfrage erstellen (Titel Pflicht, Beschreibung optional, Terminoptionen)
+- Kalenderbasierte Auswahl von Datum und Uhrzeit für Terminoptionen
 - Seitenstruktur: `/create`, `/poll/:id`, `/poll/:id/results`
 - Lokale Abstimm- und Resultatansicht innerhalb desselben Browserprofils
 - Abstimmen mit Name (Ja/Nein/Vielleicht)

@@ -7,9 +7,15 @@ export function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <Link to="/create" className="brand">
-          Termin-Umfrage Tool
-        </Link>
+        <div className="header-inner">
+          <Link to="/create" className="brand">
+            <span className="brand-mark">TU</span>
+            <span>Terminumfrage</span>
+          </Link>
+          <Link to="/create" className="header-action">
+            Neue Umfrage
+          </Link>
+        </div>
       </header>
 
       <main className="app-main">
